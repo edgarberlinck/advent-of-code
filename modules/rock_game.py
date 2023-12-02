@@ -30,15 +30,6 @@ class Parser:
           # hope to not get here
           print('Oh No!')
           self.unknow_plays[color] = int(stones)
-          
-  def get_reds(self):
-    return sum(self.red_stones)
-  
-  def get_greens(self):
-    return sum(self.green_stones)
-  
-  def get_blues(self):
-    return sum(self.blue_stones)
   
   def to_game(self):
     return Game(self.game_id, reds = self.get_reds, blues = self.get_blues, greens = self.get_greens)

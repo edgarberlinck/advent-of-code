@@ -23,12 +23,7 @@ class PuzzleGame(unittest.TestCase):
     self.assertEqual(self.parsed_game.red_stones, [4, 1])
     self.assertEqual(self.parsed_game.blue_stones, [3, 6])
     self.assertEqual(self.parsed_game.green_stones, [2, 2])
-  
-  def test_total_of_stones(self):
-    self.assertEqual(self.parsed_game.get_reds(), 5)
-    self.assertEqual(self.parsed_game.get_greens(), 4)
-    self.assertEqual(self.parsed_game.get_blues(), 9)
-    
+
   def test_game_possibility(self):
     self.assertTrue(self.parsed_game.matches(Game(1, reds = 12, greens = 13, blues = 14)))
     self.assertFalse(self.parsed_game.matches(Game(1, reds = 1, greens = 13, blues = 14)))
