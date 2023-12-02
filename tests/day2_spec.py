@@ -17,7 +17,7 @@ class PuzzleGame(unittest.TestCase):
     self.assertEqual(game.reds, 12)
     self.assertEqual(game.greens, 13)  
     self.assertEqual(game.blues, 14)
-      
+    
   def test_game_parser(self):
     self.assertEqual(self.parsed_game.game_id, 1)
     self.assertEqual(self.parsed_game.red_stones, [4, 1])

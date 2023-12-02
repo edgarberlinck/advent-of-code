@@ -28,6 +28,7 @@ class Parser:
           self.green_stones.append(int(rocks))
         else:
           # hope to not get here
+          print('Oh No!')
           self.unknow_plays[color] = int(stones)
           
   def get_reds(self):
@@ -44,9 +45,9 @@ class Parser:
   
   def matches(self, game: Game) -> bool:
     return (
-      self.get_reds() <= game.reds and 
-      self.get_blues() <= game.blues and 
-      self.get_greens() <= game.greens
+      len(list(filter(lambda x: x > game.reds, self.red_stones))) == 0 and
+      len(list(filter(lambda x: x > game.greens, self.green_stones))) == 0 and
+      len(list(filter(lambda x: x > game.blues, self.blue_stones))) == 0 
     )
   
 
@@ -58,4 +59,3 @@ def score_matching_games(game_list, game_reference):
       print('game %s matched' % parsed.game_id)
       score += parsed.game_id
   return score
-
