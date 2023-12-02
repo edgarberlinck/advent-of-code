@@ -1,5 +1,5 @@
 import unittest
-from modules.rock_game import Parser, Game, score_matching_games
+from modules.rock_game import Parser, Game, score_matching_games, batch_parse_games
 
 class PuzzleGame(unittest.TestCase):
   def setUp(self) -> None:
@@ -40,6 +40,22 @@ class PuzzleGame(unittest.TestCase):
     score = score_matching_games(games, Game(1, reds=12, greens=13, blues=14))
     self.assertEqual(score, 8)
 
+  def test_game_power(self):
+    games = (
+      'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green',
+      'Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue',
+      'Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red',
+      'Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red',
+      'Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green'
+    )
+    
+    parsed_games = batch_parse_games(games)
+    self.assertEqual(parsed_games[0].get_game_power(), 48)
+    self.assertEqual(parsed_games[1].get_game_power(), 12)
+    self.assertEqual(parsed_games[2].get_game_power(), 1560)
+    self.assertEqual(parsed_games[3].get_game_power(), 630)
+    self.assertEqual(parsed_games[4].get_game_power(), 36)
+      
     
     
 

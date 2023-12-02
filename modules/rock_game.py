@@ -41,6 +41,12 @@ class Parser:
       len(list(filter(lambda x: x > game.blues, self.blue_stones))) == 0 
     )
   
+  def get_game_power(self):
+    return (
+      max(self.red_stones) *
+      max(self.blue_stones) *
+      max(self.green_stones)
+    )
 
 def score_matching_games(game_list, game_reference):
   score = 0
@@ -50,3 +56,11 @@ def score_matching_games(game_list, game_reference):
       print('game %s matched' % parsed.game_id)
       score += parsed.game_id
   return score
+
+def batch_parse_games(game_list):
+  parsed_list = []
+  [parsed_list.append(Parser(x)) for x in game_list]
+  return parsed_list
+
+def get_total_power_of_minimun_rocks(game_list):
+  return sum([game.get_game_power() for game in batch_parse_games(game_list)])
